@@ -3,6 +3,7 @@
         let value = $state(defaultValue);
 
         function reset() {
+            value = value === ('' as unknown as number) ? 50 : value;
             const resetInterval = setInterval(
                 () => {
                     if (value < defaultValue) {
@@ -24,6 +25,7 @@
         }
 
         function increment() {
+            value = value === ('' as unknown as number) ? 50 : value;
             value = value < 100 ? (value += 1) : value;
         }
 
@@ -46,13 +48,6 @@
 <h1>Welcome to SvelteKit</h1>
 <button onclick={counter.increment}>Increment</button>
 <button onclick={counter.reset}>Reset</button>
-<input
-    type="range"
-    step={1}
-    min={0}
-    max={100}
-    bind:value={counter.value}
-    oninput={counter.limit}
-/>
+<input type="range" step={1} min={0} max={100} bind:value={counter.value} oninput={counter.limit} />
 <input type="number" bind:value={counter.value} oninput={counter.limit} />
 <p>{counter.value}</p>
